@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Classificador de Email IA</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand">
+          <div class="logo"></div>
+          <div>
+            <h1>Classificador de Email com IA</h1>
+            <p>Produtivo x Improdutivo + Sugestão de resposta</p>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="alerts">
+              {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <section class="form-card">
+          <form method="post" enctype="multipart/form-data">
+            <label for="email_text">Cole o texto do email</label>
+            <textarea id="email_text" name="email_text" rows="8" placeholder="Digite o email aqui...">{{ email_text }}</textarea>
+            <label for="email_file">Ou envie um arquivo (.txt / .pdf)</label>
+            <input id="email_file" name="email_file" type="file" accept=".txt,.pdf" />
+            <div class="button-row">
+              <button type="submit">Processar</button>
+              <button type="button" onclick="document.getElementById('email_text').value=''; document.getElementById('email_file').value='';">Limpar</button>
+            </div>
+          </form>
+        </section>
+
+        {% if prediction %}
+          <section class="result-card">
+            <h2>Resultado</h2>
+            <div class="result-row"><strong>Categoria:</strong> <span class="chip">{{ prediction.category }}</span></div>
+            <div class="result-row"><strong>Confiança:</strong> {{ "{:.2f}".format(prediction.score) }}</div>
+            <h3>Resposta Automática Sugerida</h3>
+            <div class="suggestion">{{ suggestion }}</div>
+          </section>
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>

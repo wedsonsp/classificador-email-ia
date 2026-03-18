@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter, Segoe UI, sans-serif; background: #f3f4f6; color:#111; }
+.page { max-width: 900px; margin:24px auto; padding:12px; }
+header { margin-bottom: 16px; }
+.brand { display:flex; gap:12px; align-items:center; }
+.logo { width:48px; height:48px; border-radius:12px; background: linear-gradient(135deg,#4f46e5,#3b82f6); }
+h1 { margin:0; font-size:1.5rem; }
+p { margin:4px 0 0; color:#555; }
+.form-card, .result-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; margin-top:12px; box-shadow:0 4px 12px rgba(0,0,0,0.03); }
+label { display:block; margin-top:10px; color:#334155; font-weight:600; }
+textarea { width:100%; border:1px solid #cbd5e1; border-radius:8px; margin-top:6px; padding:10px; font:inherit; resize:vertical; }
+input[type=file] { margin-top:8px; }
+button { margin-top:12px; border:none; background:#2563eb; color:white; padding:10px 16px; border-radius:8px; font-weight:600; cursor:pointer; }
+.button-row { display:flex; gap:8px; margin-top:12px; }
+.button-row button { margin-top:0; }
+.result-row { margin:6px 0; }
+.chip { background:#e0e7ff; color:#1e40af; font-weight:700; border-radius:999px; padding:2px 8px; }
+.suggestion { white-space: pre-wrap; background:#f8fafc; border:1px dashed #cbd5e1; border-radius:8px; padding:10px; margin-top:8px; }
+.alert { padding:10px; border-radius:8px; margin:8px 0; }
+.alert.warning { border:1px solid #f59e0b; background:#fffbeb; color:#92400e; }
+.alert.danger { border:1px solid #dc2626; background:#fef2f2; color:#991b1b; }
