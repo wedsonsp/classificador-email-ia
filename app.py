@@ -26,6 +26,11 @@ def index():
         email_text = request.form.get("email_text", "").strip()
         upload = request.files.get("email_file")
 
+        # Validar que o usuário não envie texto e arquivo juntos
+        if upload and upload.filename != "" and email_text:
+            flash("Por favor analise apenas o corpo do e-mail OU o arquivo, não ambos simultaneamente.", "warning")
+            return redirect(url_for("index"))
+
         if upload and upload.filename != "":
             filename = upload.filename.lower()
             if filename.endswith(".txt"):
@@ -68,7 +73,7 @@ def api_classify():
 
     email_text = (data.get("email_text") or "").strip()
     if not email_text:
-        return jsonify({"error": "email_text is required"}), 400
+        return jsonify({"error": "email_text é obrigatório"}), 400
 
     result = email_service.execute(EmailMessage(email_text))
     return jsonify(result)

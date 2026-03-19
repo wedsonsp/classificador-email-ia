@@ -86,6 +86,33 @@ Acesse a UI em `http://127.0.0.1:5000`.
 
 ---
 
+## Prova de teste local (CLI Azure OpenAI)
+
+1. Configure variáveis de ambiente (PowerShell):
+
+```powershell
+$env:AZURE_OPENAI_ENDPOINT='https://eastus.api.cognitive.microsoft.com/'
+$env:AZURE_OPENAI_API_KEY='SEU_API_KEY'
+$env:AZURE_OPENAI_DEPLOYMENT='gpt-mini'
+```
+
+2. Execute o script de teste rápido:
+
+```powershell
+python teste.py
+```
+
+3. Teste uma pergunta e confirme a resposta do modelo:
+
+```text
+Digite sua pergunta (ou 'sair'): o que é o SOLID?
+Resposta: SOLID é um acrônimo ...
+```
+
+Isso comprova que a aplicação está usando o Azure OpenAI com o endpoint e chave configurados.
+
+---
+
 ## API JSON
 
 - **Endpoint**: `POST /api/classify`

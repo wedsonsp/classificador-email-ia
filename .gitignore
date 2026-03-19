@@ -30,6 +30,7 @@ dist/
 
 # IDE / editor
 .vscode/
+.vs/
 .idea/
 .cursor/
 
