@@ -10,6 +10,18 @@ O objetivo é demonstrar uma solução simples com **UI (formulário)** + **API 
 
 ---
 
+## Práticas de desenvolvimento e arquitetura
+
+- **SOLID**: código organizado em classes e funções de responsabilidade única (`app.py` orquestra; serviços processam NLP, classificação e resposta).
+- **Clean Code**: nomeclatura clara, validação explícita e retornos HTTP consistentes.
+- **Design Patterns**: uso leve de padrão **Service Layer** e injeção de dependência manual entre camadas (`services/` e `infrastructure/`).
+- **DDD (Domain-Driven Design)**: domínio modelado em `domain/entities/email_message.py` e serviços de domínio em `domain/services`.
+- **Tipo de arquitetura**: aplicação atual é **monolítica modular** (camadas separadas por módulo), com arquitetura próxima de **hexagonal** (camadas de aplicação/serviço e infraestrutura desacopladas).
+
+> Observação: esta implementação é intencionalmente simples, pensada como MVP de protótipo. Para escala, é possível evoluir para microsserviços, APIs desacopladas e arquitetura em 3 camadas.
+
+---
+
 ## Estrutura do projeto (visão geral)
 
 - **`app.py`**: app Flask (rotas UI + API)
@@ -83,6 +95,16 @@ python app.py
 ```
 
 Acesse a UI em `http://127.0.0.1:5000`.
+
+---
+
+## Testes unitários
+
+Este projeto inclui testes unitários em `tests/` para os serviços de NLP, classificação e resposta. Execute:
+
+```powershell
+python -m unittest discover -s tests
+```
 
 ---
 
