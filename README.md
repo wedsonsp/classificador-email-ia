@@ -136,17 +136,48 @@ Isso comprova que a aplicação está usando o Azure OpenAI com o endpoint e cha
 
 - `POST /` com `x-www-form-urlencoded`
   - campo: `email_text`
+- Suporte de upload de arquivo: `.txt` ou `.pdf`
+- A validação aceita apenas um método por envio: texto no campo ou arquivo anexado (não ambos simultaneamente)
+
+### Exemplos de teste (mesmo padrão)
+
+#### E-mail produtivo
+- Texto: "Estamos com um problema de pagamentos recorrente e precisamos de correção urgente."
+- Resultado esperado: `category: Produtivo` (confiança alta) + sugestão de resposta orientada à solução.
+
+#### E-mail improdutivo
+- Texto: "Obrigado pelo suporte, feliz em saber que está tudo certo."
+- Resultado esperado: `category: Improdutivo` (confiança alta) + sugestão breve de agradecimento.
 
 ### API (JSON)
 
 - `POST /api/classify`
   - header: `Content-Type: application/json`
+  - body exemplo (produtivo):
+
+```json
+{ "email_text": "Há erro no processamento de pagamentos e precisamos de ação imediata" }
+```
+
+- body exemplo (improdutivo):
+
+```json
+{ "email_text": "Obrigado pelo retorno, está ótimo e sem urgência" }
+```
+
+- Resposta (exemplo):
+
+```json
+{ "category": "Produtivo", "confidence": 0.87, "suggestion": "..." }
+```
 
 ---
 
 ## Deploy no Azure App Service (referência)
 
 > Ajuste nomes/assinatura conforme seu ambiente.
+
+> Observação: este fluxo de deploy é para quem tem conta no Azure e App Service configurado. Se você estiver em outro provedor (AWS, GCP, on-prem, etc.), use a estratégia de deploy específica desse ambiente (Docker + container registry, Kubernetes, serverless, etc.).
 
 ```powershell
 az login
